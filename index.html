@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WHEELPRO - Премиум шиномонтаж</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Exo+2:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        :root {
+            --primary: #FF6B35;
+            --primary-dark: #E55A2B;
+            --accent: #00C2FF;
+            --dark: #0A0E17;
+            --dark-light: #1A1F2C;
+            --light: #F5F7FA;
+            --gray: #8A94A6;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            --gradient: linear-gradient(135deg, var(--primary) 0%, #FF8E53 100%);
+            --gradient-dark: linear-gradient(135deg, var(--dark) 0%, #1A1F2C 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: var(--light);
+            background-color: var(--dark);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(0, 194, 255, 0.05) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Exo 2', sans-serif;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            background: linear-gradient(to right, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        h2 {
+            font-size: 2.8rem;
+            color: var(--light);
+            text-align: center;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 5px;
+            background: var(--gradient);
+            bottom: -10px;
+            left: 20%;
+            border-radius: 5px;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            color: var(--light);
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        section {
+            padding: 6rem 1rem;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient);
+            color: white;
+            padding: 1.2rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            font-size: 1rem;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(255, 107, 53, 0.3);
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 194, 255, 0.1);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.2rem 0;
+            background: rgba(10, 14, 23, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 107, 53, 0.1);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            padding: 0.8rem 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .logo-text {
+            font-family: 'Exo 2', sans-serif;
+            font-weight: 800;
+        }
+
+        .logo-text span {
+            color: var(--primary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        nav li {
+            position: relative;
+        }
+
+        nav a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            bottom: 0;
+            left: 0;
+            transition: var(--transition);
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .phone {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: white;
+        }
+
+        .phone i {
+            color: var(--primary);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: white;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 12rem 1rem 8rem;
+            position: relative;
+            overflow: hidden;
+            background: var(--gradient-dark);
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1600712242805-5f78671d8e61?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+            clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
+            z-index: 0;
+        }
+
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--dark) 0%, transparent 50%, transparent 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 55%;
+        }
+
+        .hero h1 {
+            margin-bottom: 1.5rem;
+            font-size: 3.8rem;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .stats {
+            display: flex;
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1;
+        }
+
+        .stat-text {
+            font-size: 0.9rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Услуги */
+        .services {
+            background-color: var(--dark-light);
+            position: relative;
+        }
+
+        .services::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ff6b35' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 107, 53, 0.1);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, transparent 50%);
+            z-index: -1;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px);
+            border-color: rgba(255, 107, 53, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            transition: var(--transition);
+        }
+
+        .service-card:hover .service-icon {
+            transform: rotateY(180deg) scale(1.1);
+        }
+
+        .service-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .price {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-top: 1rem;
+        }
+
+        /* Преимущества */
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .advantage-card {
+            background: var(--dark-light);
+            border-radius: 15px;
+            padding: 2rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .advantage-card:hover {
+            transform: translateX(10px);
+            border-color: rgba(0, 194, 255, 0.3);
+            background: rgba(0, 194, 255, 0.05);
+        }
+
+        .advantage-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(0, 194, 255, 0.1);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        /* Запись */
+        .booking {
+            background: var(--gradient-dark);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .booking::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+            top: -150px;
+            right: -150px;
+            opacity: 0.1;
+        }
+
+        .booking::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+            bottom: -200px;
+            left: -200px;
+            opacity: 0.05;
+        }
+
+        .booking-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 25px;
+            padding: 3rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+
+        .booking-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 0;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--light);
+            font-weight: 600;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: var(--light);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        /* Контакты */
+        .contacts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+
+        .contact-info {
+            background: var(--dark-light);
+            border-radius: 20px;
+            padding: 2.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 107, 53, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        .contact-text h4 {
+            margin-bottom: 0.3rem;
+        }
+
+        .map {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            height: 100%;
+            min-height: 400px;
+        }
+
+        .map iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Футер */
+        footer {
+            background: var(--dark);
+            border-top: 1px solid rgba(255, 107, 53, 0.1);
+            padding: 4rem 1rem 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-about p {
+            color: var(--gray);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background: var(--gradient);
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        .footer-heading {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Анимации */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Адаптивность */
+        @media (max-width: 1200px) {
+            .hero-bg {
+                width: 50%;
+            }
+
+            .hero-content {
+                max-width: 60%;
+            }
+        }
+
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.8rem;
+            }
+
+            h2 {
+                font-size: 2.3rem;
+            }
+
+            .hero-bg {
+                width: 40%;
+                opacity: 0.5;
+            }
+
+            .hero-content {
+                max-width: 80%;
+            }
+
+            .contacts-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .map {
+                min-height: 350px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                background: rgba(10, 14, 23, 0.98);
+                backdrop-filter: blur(15px);
+                padding: 2rem;
+                transition: var(--transition);
+                border-top: 1px solid rgba(255, 107, 53, 0.1);
+            }
+
+            nav.active {
+                left: 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .phone {
+                display: none;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .hero {
+                padding: 10rem 1rem 6rem;
+            }
+
+            .hero-bg {
+                display: none;
+            }
+
+            .hero-content {
+                max-width: 100%;
+                text-align: center;
+            }
+
+            .hero-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .stats {
+                justify-content: center;
+                gap: 2rem;
+            }
+
+            .booking-form {
+                grid-template-columns: 1fr;
+            }
+
+            .booking-container {
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            section {
+                padding: 4rem 1rem;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            .services-grid, .advantages-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .btn {
+                padding: 1rem 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Header -->
+<header id="header">
+    <div class="container header-container">
+        <a href="#" class="logo">
+            <div class="logo-icon">
+                <i class="fas fa-tire-pressure-warning"></i>
+            </div>
+            <div class="logo-text">WHEEL<span>PRO</span></div>
+        </a>
+
+        <div class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <nav id="navMenu">
+            <ul>
+                <li><a href="#services">Услуги</a></li>
+                <li><a href="#advantages">Преимущества</a></li>
+                <li><a href="#booking">Онлайн-запись</a></li>
+                <li><a href="#contacts">Контакты</a></li>
+            </ul>
+        </nav>
+
+        <div class="phone">
+            <i class="fas fa-phone-alt"></i>
+            <span>8 (800) 555-35-35</span>
+        </div>
+    </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="hero-bg"></div>
+    <div class="container">
+        <div class="hero-content animate-on-scroll">
+            <h1>ПРЕМИУМ ШИНОМОНТАЖ ДЛЯ ВАШЕГО АВТО</h1>
+            <p>Используем профессиональное итальянское оборудование, даем гарантию 2 года на все работы. Бесплатная диагностика подвески при шиномонтаже.</p>
+            <div class="hero-btns">
+                <a href="#booking" class="btn">Записаться онлайн</a>
+                <a href="#contacts" class="btn btn-secondary">Контакты</a>
+            </div>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">12+</div>
+                    <div class="stat-text">Лет опыта</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">15 000+</div>
+                    <div class="stat-text">Довольных клиентов</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">30 мин</div>
+                    <div class="stat-text">Среднее время работы</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Услуги -->
+<section id="services" class="services">
+    <div class="container">
+        <div class="section-title">
+            <h2>НАШИ УСЛУГИ</h2>
+            <p>Полный комплекс услуг по шиномонтажу для легковых, грузовых автомобилей и внедорожников</p>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card animate-on-scroll">
+                <div class="service-icon">
+                    <i class="fas fa-tire"></i>
+                </div>
+                <h3>Полный шиномонтаж</h3>
+                <p>Снятие, монтаж, балансировка колес. Работаем с любыми типами шин, включами RunFlat и низкопрофильные.</p>
+                <div class="price">от 600 руб.</div>
+            </div>
+
+            <div class="service-card animate-on-scroll">
+                <div class="service-icon">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <h3>Ремонт шин</h3>
+                <p>Устранение проколов, порезов, грыж. Вулканизация, установка жгутов и грибков. Ремонт боковых порезов.</p>
+                <div class="price">от 400 руб.</div>
+            </div>
+
+            <div class="service-card animate-on-scroll">
+                <div class="service-icon">
+                    <i class="fas fa-compress-arrows-alt"></i>
+                </div>
+                <h3>Компьютерная балансировка</h3>
+                <p>Точная балансировка на современных компьютеризированных стендах с фиксацией на липучке.</p>
+                <div class="price">от 250 руб.</div>
+            </div>
+
+            <div class="service-card animate-on-scroll">
+                <div class="service-icon">
+                    <i class="fas fa-warehouse"></i>
+                </div>
+                <h3>Сезонное хранение</h3>
+                <p>Хранение шин в специальном помещении с контролем температуры и влажности. Маркировка и упаковка.</p>
+                <div class="price">от 2500 руб./сезон</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Преимущества -->
+<section id="advantages" class="advantages">
+    <div class="container">
+        <div class="section-title">
+            <h2>НАШИ ПРЕИМУЩЕСТВА</h2>
+            <p>Почему клиенты выбирают именно наш шиномонтаж</p>
+        </div>
+
+        <div class="advantages-grid">
+            <div class="advantage-card animate-on-scroll">
+                <div class="advantage-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <div>
+                    <h3>Скорость работы</h3>
+                    <p>Полный шиномонтаж за 30 минут благодаря современному оборудованию и слаженной команде.</p>
+                </div>
+            </div>
+
+            <div class="advantage-card animate-on-scroll">
+                <div class="advantage-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div>
+                    <h3>Гарантия 2 года</h3>
+                    <p>Самая длительная гарантия на рынке. Уверены в качестве наших работ и материалов.</p>
+                </div>
+            </div>
+
+            <div class="advantage-card animate-on-scroll">
+                <div class="advantage-icon">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <div>
+                    <h3>Оборудование Италия/Германия</h3>
+                    <p>Работаем на профессиональных станках Ravaglioli и Hofmann. Точность и бережное отношение к дискам.</p>
+                </div>
+            </div>
+
+            <div class="advantage-card animate-on-scroll">
+                <div class="advantage-icon">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <div>
+                    <h3>Опытные мастера</h3>
+                    <p>Средний стаж наших специалистов - 8 лет. Регулярное повышение квалификации.</p>
+                </div>
+            </div>
+
+            <div class="advantage-card animate-on-scroll">
+                <div class="advantage-icon">
+                    <i class="fas fa-car"></i>
+                </div>
+                <div>
+                    <h3>Любые авто</h3>
+                    <p>Обслуживаем легковые, грузовые автомобили, внедорожники и мотоциклы. Есть подъемник для джипов.</p>
+                </div>
+            </div>
+
+            <div class="advantage-card animate-on-scroll">
+                <div class="advantage-icon">
+                    <i class="fas fa-coffee"></i>
+                </div>
+                <div>
+                    <h3>Комфортная зона ожидания</h3>
+                    <p>Wi-Fi, кофе, телевизор, детский уголок. Можно работать или отдыхать в чистом современном пространстве.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Запись -->
+<section id="booking" class="booking">
+    <div class="container">
+        <div class="section-title">
+            <h2>ОНЛАЙН-ЗАПИСЬ</h2>
+            <p>Запишитесь прямо сейчас и получите скидку 15% на первый визит</p>
+        </div>
+
+        <div class="booking-container animate-on-scroll">
+            <form class="booking-form" id="bookingForm">
+                <div class="form-group">
+                    <label class="form-label">Ваше имя</label>
+                    <input type="text" class="form-control" placeholder="Иван Иванов" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Телефон</label>
+                    <input type="tel" class="form-control" placeholder="+7 (900) 123-45-67" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Услуга</label>
+                    <select class="form-control">
+                        <option>Шиномонтаж</option>
+                        <option>Ремонт шин</option>
+                        <option>Балансировка</option>
+                        <option>Хранение шин</option>
+                        <option>Комплекс услуг</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Дата</label>
+                    <input type="date" class="form-control" required>
+                </div>
+
+                <div class="form-group full-width">
+                    <label class="form-label">Автомобиль и доп. информация</label>
+                    <textarea class="form-control" rows="3" placeholder="Марка, модель, год, особенности..."></textarea>
+                </div>
+
+                <div class="form-group full-width" style="text-align: center;">
+                    <button type="submit" class="btn">Записаться со скидкой 15%</button>
+                    <p style="margin-top: 1rem; font-size: 0.9rem; color: rgba(255,255,255,0.6);">Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности</p>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Контакты -->
+<section id="contacts" class="contacts">
+    <div class="container">
+        <div class="section-title">
+            <h2>КОНТАКТЫ</h2>
+            <p>Приезжайте к нам или звоните - мы всегда на связи</p>
+        </div>
+
+        <div class="contacts-grid">
+            <div class="contact-info animate-on-scroll">
+                <h3>Наш шиномонтаж</h3>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h4>Адрес</h4>
+                        <p>г. Москва, Ленинградский проспект, д. 64, стр. 2</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h4>Телефон</h4>
+                        <p>8 (800) 555-35-35</p>
+                        <p>8 (495) 123-45-67</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h4>Режим работы</h4>
+                        <p>Пн-Пт: 8:00 - 22:00</p>
+                        <p>Сб-Вс: 9:00 - 21:00</p>
+                        <p>Без перерывов и выходных</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h4>Email</h4>
+                        <p>info@wheelpro.ru</p>
+                        <p>booking@wheelpro.ru</p>
+                    </div>
+                </div>
+
+                <a href="#booking" class="btn" style="width: 100%; margin-top: 1rem;">Записаться по телефону</a>
+            </div>
+
+            <div class="map animate-on-scroll">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2245.372951739779!2d37.61729931593048!3d55.75582628055278!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b54a50b315e573%3A0xa886bf5a3d9b2e68!2z0JzQvtGB0LrQstCw!5e0!3m2!1sru!2sru!4v1621432176783!5m2!1sru!2sru" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Футер -->
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-about">
+                <div class="footer-logo">
+                    <div class="logo-icon" style="width: 40px; height: 40px; font-size: 1rem;">
+                        <i class="fas fa-tire-pressure-warning"></i>
+                    </div>
+                    <div class="logo-text">WHEEL<span>PRO</span></div>
+                </div>
+                <p>Премиальный шиномонтаж в Москве с 2010 года. Современное оборудование, опытные мастера, гарантия качества.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-vk"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="footer-heading">Услуги</h4>
+                <ul class="footer-links">
+                    <li><a href="#services">Шиномонтаж</a></li>
+                    <li><a href="#services">Ремонт шин</a></li>
+                    <li><a href="#services">Балансировка</a></li>
+                    <li><a href="#services">Хранение шин</a></li>
+                    <li><a href="#services">Диагностика подвески</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="footer-heading">Информация</h4>
+                <ul class="footer-links">
+                    <li><a href="#advantages">О нас</a></li>
+                    <li><a href="#advantages">Преимущества</a></li>
+                    <li><a href="#contacts">Контакты</a></li>
+                    <li><a href="#booking">Запись онлайн</a></li>
+                    <li><a href="#">Акции и скидки</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>&copy; 2023 WHEELPRO. Все права защищены.</p>
+            <p>ИП Сергеев А.В. ОГРНИП 1234567890123</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
+
+    menuToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        menuToggle.innerHTML = navMenu.classList.contains('active')
+            ? '<i class="fas fa-times"></i>'
+            : '<i class="fas fa-bars"></i>';
+    });
+
+    const navLinks = document.querySelectorAll('nav a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+            menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+        });
+    });
+
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 100) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+
+    const animateElements = document.querySelectorAll('.animate-on-scroll');
+
+    const animateOnScroll = () => {
+        animateElements.forEach(element => {
+            const elementPosition = element.getBoundingClientRect().top;
+            const screenPosition = window.innerHeight / 1.2;
+
+            if (elementPosition < screenPosition) {
+                element.classList.add('animated');
+            }
+        });
+    };
+
+    window.addEventListener('scroll', animateOnScroll);
+    window.addEventListener('load', animateOnScroll);
+
+    const bookingForm = document.getElementById('bookingForm');
+    bookingForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const name = this.querySelector('input[type="text"]').value;
+        const phone = this.querySelector('input[type="tel"]').value;
+
+        const notification = document.createElement('div');
+        notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: var(--gradient);
+                color: white;
+                padding: 20px 25px;
+                border-radius: 10px;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+                z-index: 10000;
+                transform: translateX(150%);
+                transition: transform 0.5s ease;
+                max-width: 350px;
+                font-weight: 600;
+            `;
+        notification.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                    <i class="fas fa-check-circle" style="font-size: 1.5rem;"></i>
+                    <h4 style="margin: 0; font-size: 1.2rem;">Заявка принята!</h4>
+                </div>
+                <p style="margin: 0; font-size: 0.95rem;">Спасибо, ${name}! Мы перезвоним вам по номеру ${phone} в течение 10 минут для подтверждения записи.</p>
+            `;
+
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+            notification.style.transform = 'translateX(0)';
+        }, 10);
+
+        setTimeout(() => {
+            notification.style.transform = 'translateX(150%)';
+            setTimeout(() => {
+                document.body.removeChild(notification);
+            }, 500);
+        }, 5000);
+
+        bookingForm.reset();
+
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        const tomorrowFormatted = tomorrow.toISOString().split('T')[0];
+        this.querySelector('input[type="date"]').value = tomorrowFormatted;
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+        const today = new Date();
+        const todayFormatted = today.toISOString().split('T')[0];
+        const dateInput = bookingForm.querySelector('input[type="date"]');
+        dateInput.setAttribute('min', todayFormatted);
+
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        const tomorrowFormatted = tomorrow.toISOString().split('T')[0];
+        dateInput.value = tomorrowFormatted;
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 100,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const heroBg = document.querySelector('.hero-bg');
+        if (heroBg) {
+            heroBg.style.transform = `translateY(${scrolled * 0.5}px)`;
+        }
+    });
+</script>
+</body>
+</html>
